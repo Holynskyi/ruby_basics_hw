@@ -1,9 +1,20 @@
-def hytro_reverse (initial_array)
-	return initial_array.map.with_index{|x,i|initial_array[-i-1]}
-end	#коду небагато, але мене тєрзают смутниє сомнєнія, чи мав я право використовуати map.with_index - від нього попахує циклом
+def hytro_reverse(initial_array , i=0)
+	initial_array[i], initial_array[-i-1]=initial_array[-i-1], initial_array[i] 	
+	i=i+1
+	if i<initial_array.length/2
+		reverse_array=hytro_reverse(initial_array ,i)
+	else 		
+		return initial_array
+	end
+end	
+
+def my_reverse(arr)
+	m=arr.dup
+	return hytro_reverse(m)
+end
 
 input=[0,1,"dva",3.14,4,5,6,7.0]
-output=hytro_reverse (input)
+output=my_reverse (input)
 
 puts input
 puts"---------"
